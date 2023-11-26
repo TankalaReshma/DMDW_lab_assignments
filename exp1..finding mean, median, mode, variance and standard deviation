@@ -1,0 +1,68 @@
+#using libraries
+import numpy as np
+from scipy import stats
+arr1=np.array([1,2,3,4,2,6,44,76])
+print(arr1)
+# mn=np.mean(arr1)
+print("The mean of the array is:",np.mean(arr1))
+med=np.median(arr1)
+print("The median in the array is:",med)
+mod=stats.mode(arr1)
+print("The mode in the array is:",mod)
+st=np.std(arr1)
+print("The standard deviation in the array is: ",st)
+vr=np.var(arr1)
+print("The varience in the array is: ",vr)
+
+
+
+#without using libraries
+
+# Function to calculate the mean of a list
+def calculate_mean(data):
+    return sum(data) / len(data)
+
+# Function to calculate the median of a list
+def calculate_median(data):
+    sorted_data = sorted(data)
+    n = len(data)
+    middle = n // 2
+    if n % 2 == 0:
+        return (sorted_data[middle - 1] + sorted_data[middle]) / 2
+    else:
+        return sorted_data[middle]
+
+# Function to calculate the mode of a list
+def calculate_mode(data):
+    count_dict = {}
+    for value in data:
+        count_dict[value] = count_dict.get(value, 0) + 1
+    modes = [key for key, value in count_dict.items() if value == max(count_dict.values())]
+    return modes
+
+# Function to calculate the variance of a list
+def calculate_variance(data):
+    mean_value = calculate_mean(data)
+    squared_diff = [(x - mean_value) ** 2 for x in data]
+    return sum(squared_diff) / len(data)
+
+# Function to calculate the standard deviation of a list
+def calculate_standard_deviation(data):
+    variance = calculate_variance(data)
+    return variance ** 0.5
+
+# Example data
+data = [4, 7, 2, 9, 10, 3, 7, 6, 1, 8]
+
+# Calculate and print mean, median, mode, variance, and standard deviation
+mean_value = calculate_mean(data)
+median_value = calculate_median(data)
+mode_value = calculate_mode(data)
+variance_value = calculate_variance(data)
+std_deviation_value = calculate_standard_deviation(data)
+
+print("Mean:", mean_value)
+print("Median:", median_value)
+print("Mode:", mode_value)
+print("Variance:", variance_value)
+print("Standard Deviation:", std_deviation_value)
